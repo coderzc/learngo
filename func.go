@@ -57,6 +57,18 @@ func pow(a, b int) int {
 	return int(math.Pow(float64(a), float64(b)))
 }
 
+/**
+变长参数
+*/
+func sum(numbers ...int) int {
+	s := 0
+	for i, number := range numbers {
+		s += number
+		fmt.Println(i)
+	}
+	return s
+}
+
 func main() {
 
 	i, i2 := div(13, 3)
@@ -91,4 +103,6 @@ func main() {
 	fmt.Println(apply(func(a int, b int) int {
 		return int(math.Pow(float64(a), float64(b)))
 	}, 3, 4))
+
+	fmt.Println(sum(1, 2, 3, 4, 5))
 }

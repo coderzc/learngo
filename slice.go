@@ -51,8 +51,22 @@ func main() {
 	fmt.Println("m1：", m1)
 	fmt.Println("m2：", m2)
 
+	fmt.Println("m1 len :", len(m1))
+	fmt.Println("m1 cap :", cap(m1))
+
 	m3 := append(m1, 10)
 	m4 := append(s3, 11)
 	m5 := append(m4, 12)
+
+	fmt.Println("m3：", m3)
+	fmt.Println("m1 len :", len(m1))
+	fmt.Println("m1 cap :", cap(m1))
+	fmt.Println("arr3 = ", arr3)
+
+	fmt.Println("m4：", m4)
+	fmt.Println("arr3 = ", arr3)
+
+	fmt.Println("m5：", m5)
+	fmt.Println("arr3 = ", arr3)
 
 }

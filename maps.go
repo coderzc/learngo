@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	m := map[string]string{
@@ -38,4 +40,24 @@ func main() {
 	name, ok = m["name"]
 	fmt.Println(name, ok)
 
+	fmt.Println(maxLenSubStr("abba"))
+
+}
+
+// 求最长无重复子串长度
+func maxLenSubStr(str string) int {
+	strmap := make(map[byte]int) // [字符]下标
+	count := 0
+	start := 0
+
+	for k, ch := range []byte(str) {
+		if oldK, ok := strmap[ch]; ok && oldK >= start {
+			start = oldK + 1
+		}
+		if k-start+1 > count {
+			count = k - start + 1
+		}
+		strmap[ch] = k
+	}
+	return count
 }

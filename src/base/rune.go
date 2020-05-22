@@ -13,13 +13,13 @@ func main() {
 		fmt.Printf("%X ", b)
 	}
 
-	fmt.Println()
+	fmt.Println("\n---")
 
-	for i, ch := range s {
-		fmt.Printf("(%d,%d)  ", i, ch)
+	for i, ch := range s { // ch is rune
+		fmt.Printf("(%d,%X)  ", i, ch)
 	}
 
-	fmt.Println()
+	fmt.Println("\n---")
 
 	fmt.Println("Rune count:", utf8.RuneCountInString(s))
 

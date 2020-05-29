@@ -3,28 +3,20 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"learngo/src/model/tree"
+	"syscall"
 )
 
-type TreeNode struct {
-	Value int       `json:"value"`
-	Left  *TreeNode `json:"left"`
-	Right *TreeNode `json:"right"`
-}
-
-func createNode(value int) *TreeNode {
-	return &TreeNode{Value: value}
-}
-
 func main() {
-	var root TreeNode
-	root = TreeNode{Value: 3}
-	root.Left = &TreeNode{}
-	root.Right = &TreeNode{5, nil, nil}
-	root.Right.Left = new(TreeNode)
+	var root tree.Node
+	root = tree.Node{Value: 3}
+	root.Left = &tree.Node{}
+	root.Right = &tree.Node{5, nil, nil}
+	root.Right.Left = new(tree.Node)
 
-	root.Right.Right = createNode(10)
+	root.Right.Right = tree.CreateNode(10)
 
-	nodes := []TreeNode{
+	nodes := []tree.Node{
 		{Value: 3},
 		{},
 		{6, nil, &root},
@@ -39,4 +31,35 @@ func main() {
 
 	//jsonStu是[]byte类型，转化成string类型便于查看
 	fmt.Println(string(jsonNodes))
+
+	root.SetValue(10)
+
+	root.Print()
+
+	pRoot := &root
+	pRoot.Print()
+
+	pRoot = nil
+	//pRoot.setValue(10)
+
+	root.SetValue2(99)
+
+	fmt.Println(root)
+	root.ResetNode()
+	fmt.Println(root)
+
+}
+
+type MyTreeNode struct {
+	node *tree.Node
+}
+
+func (myTreeNode *MyTreeNode) postOrder() {
+	if myTreeNode == nil {
+		return
+	}
+	(&MyTreeNode{myTreeNode.node.Left}).postOrder()
+	(&MyTreeNode{myTreeNode.node.Right}).postOrder()
+	myTreeNode.node.Print()
+	syscall.Sendfile()
 }

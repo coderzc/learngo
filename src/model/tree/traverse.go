@@ -1,11 +1,21 @@
 package tree
 
-func (node *Node) Traverse() {
-	if node == nil {
+import "fmt"
+
+func (node *Node)Traverse()  {
+	if node == nil{
 		return
 	}
-
 	node.Left.Traverse()
-	node.Print()
+	fmt.Println(node.Value)
+	node.Right.Traverse()
+}
+
+func (node *Node)TraverseFunc(f func(*Node))  {
+	if node == nil{
+		return
+	}
+	node.Left.Traverse()
+	f(node)
 	node.Right.Traverse()
 }

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"learngo/src/model/tree"
-	"syscall"
 )
 
 func main() {
@@ -61,5 +60,4 @@ func (myTreeNode *MyTreeNode) postOrder() {
 	(&MyTreeNode{myTreeNode.node.Left}).postOrder()
 	(&MyTreeNode{myTreeNode.node.Right}).postOrder()
 	myTreeNode.node.Print()
-	syscall.Sendfile()
 }

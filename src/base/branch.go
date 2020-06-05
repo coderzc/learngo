@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"strconv"
@@ -88,8 +89,10 @@ func printFile(filename string) {
 	if e != nil {
 		panic(e)
 	}
-
-	scanner := bufio.NewScanner(file)
+	printFileContent(file)
+}
+func printFileContent(reader io.Reader)  {
+	scanner := bufio.NewScanner(reader)
 
 	// 相当于while
 	for scanner.Scan() {

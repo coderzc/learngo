@@ -1,4 +1,7 @@
 package main
+/*
+接口
+ */
 
 import (
 	"fmt"

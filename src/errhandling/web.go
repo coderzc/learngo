@@ -2,16 +2,21 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"github.com/gpmgo/gopm/log"
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
 type appHandler func(writer http.ResponseWriter, request *http.Request) error
 type httpRespFunc func(writer http.ResponseWriter, request *http.Request)
 
 func handlerFileList(writer http.ResponseWriter, request *http.Request) error {
+	if !strings.HasPrefix(request.URL.Path, "/list/") {
+		return errors.New("path must be start with /list/")
+	}
 	path := request.URL.Path[len("/list/"):]
 	file, err := os.Open(path)
 	if err != nil {
@@ -28,8 +33,16 @@ func handlerFileList(writer http.ResponseWriter, request *http.Request) error {
 	return nil
 }
 
-func errWrapper(handler appHandler) httpRespFunc{
+func errWrapper(handler appHandler) httpRespFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
+		defer func() {
+			if r := recover(); r != nil {
+				log.Warn("painc:%v", r)
+				http.Error(writer, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+
+			}
+		}()
+
 		err := handler(writer, request)
 		if err != nil {
 			code := http.StatusOK

@@ -1,7 +1,8 @@
 package main
+
 /*
 接口
- */
+*/
 
 import (
 	"fmt"
@@ -22,11 +23,12 @@ func download(r Retriever) string {
 	return r.Get("https://wwww.baidu.com")
 }
 
-func MyPrint(a interface{}) interface{}{
+func MyPrint(a interface{}) interface{} {
 	fmt.Println(a.(string))
 	return a
 }
 
+// 相当于java接口继承 Retriever和Poster是RetrieverPoster的父接口
 type RetrieverPoster interface {
 	Retriever
 	Poster
@@ -38,7 +40,7 @@ func session(s RetrieverPoster) string {
 }
 
 func main() {
-	var r Retriever = mock.Retriever{Contents: "this is a fake"}
+	var r Retriever = mock.RetrieverPoster{Contents: "this is a fake"}
 	fmt.Println(download(r))
 
 	var r2 Retriever = &http.Retriever{
@@ -51,7 +53,7 @@ func main() {
 
 	// type switch
 	switch v := r2.(type) {
-	case mock.Retriever:
+	case mock.RetrieverPoster:
 		fmt.Println("Contents:", v.Contents)
 	case *http.Retriever:
 		fmt.Println("UserAgent:", v.UserAgent)
@@ -60,11 +62,11 @@ func main() {
 	// Type assertion 把接口装换成类型(T)
 	if retriever, ok := r.(http.Retriever); ok {
 		fmt.Println(retriever)
-	}else {
+	} else {
 		fmt.Println("not a mock retriever")
 	}
 
-	s := session(mock.Retriever{Contents: "this a mock.Retriever"})
+	s := session(mock.RetrieverPoster{Contents: "this a mock.Retriever"})
 	fmt.Println(s)
 
 }

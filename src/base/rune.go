@@ -41,4 +41,12 @@ func main() {
 
 	fmt.Println(subStr)
 
+	var zi rune = '国'
+	fmt.Printf("zi type:%T\n", zi)
+	fmt.Printf("aas:%c\n", zi)
+
+	emjom := "😂"
+	var emjomRune = []rune(emjom)[0]
+	fmt.Printf("emjomRune:%c\n", emjomRune)
+
 }

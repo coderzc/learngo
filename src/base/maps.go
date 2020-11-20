@@ -42,6 +42,10 @@ func main() {
 
 	fmt.Println(maxLenSubStr("abba"))
 
+	strstrmap := make(map[string]string)
+	strstrmap["a"] = "a"
+	fmt.Println("c:", strstrmap["c"])
+
 }
 
 // 求最长无重复子串长度

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -32,4 +33,18 @@ func main() {
 	for k, v := range split {
 		fmt.Println(k, v)
 	}
+
+	// parseInt
+	if i, err := parsInt("111"); err == nil {
+		fmt.Println("parsInt:", i)
+	}
+}
+
+func parsInt(orig string) (int, error) {
+	an, err := strconv.Atoi(orig)
+	if err != nil {
+		//fmt.Println(err)
+		return 0, fmt.Errorf("orig %s is not an integer - exiting with error\n", orig)
+	}
+	return an, nil
 }

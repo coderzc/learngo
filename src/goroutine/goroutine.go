@@ -7,14 +7,15 @@ import (
 )
 
 func main() {
-	var a int = 0
+	a := 0
 	var mutex = new(sync.Mutex)
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 10; i++ {
 		go func(i int) {
 			//fmt.Println("hello goroutine:" , i)
 			mutex.Lock()
 			defer mutex.Unlock()
 			a++
+			//runtime.Gosched() 交出控制权
 		}(i)
 	}
 

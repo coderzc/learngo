@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"learngo/src/model/tree"
+	"github.com/coderzc/learngo/model/tree"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"learngo/src/model/tree"
+	"github.com/coderzc/learngo/model/tree"
 )
 
 func main() {

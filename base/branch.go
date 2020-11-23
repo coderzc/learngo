@@ -91,7 +91,7 @@ func printFile(filename string) {
 	}
 	printFileContent(file)
 }
-func printFileContent(reader io.Reader)  {
+func printFileContent(reader io.Reader) {
 	scanner := bufio.NewScanner(reader)
 
 	// 相当于while

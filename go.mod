@@ -1,4 +1,4 @@
-module learngo
+module github.com/coderzc/learngo
 
 go 1.14
 

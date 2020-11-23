@@ -6,8 +6,8 @@ package main
 
 import (
 	"fmt"
-	"learngo/src/retriever/http"
-	"learngo/src/retriever/mock"
+	"github.com/coderzc/learngo/retriever/http"
+	"github.com/coderzc/learngo/retriever/mock"
 	"time"
 )
 

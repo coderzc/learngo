@@ -19,16 +19,16 @@ func fibonacci() intGen {
 
 func (g intGen) Read(p []byte) (n int, err error) {
 	next := g()
-	if next > 1000{
-		return 0,io.EOF
+	if next > 1000 {
+		return 0, io.EOF
 	}
 	s := fmt.Sprintf("%d\n", next)
 	return strings.NewReader(s).Read(p)
 }
 
-func printStreamContents(reader io.Reader)  {
+func printStreamContents(reader io.Reader) {
 	scanner := bufio.NewScanner(reader)
-	for scanner.Scan(){
+	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 	}
 }

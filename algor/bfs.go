@@ -12,6 +12,10 @@ type point struct {
 	i, j int
 }
 
+func (p point) add(r point) point {
+	return point{p.i + r.i, p.j + r.j}
+}
+
 type Queue struct {
 	length int
 	data   []interface{}
@@ -36,6 +40,20 @@ func printMaze(maze [][]int) {
 		}
 		fmt.Println()
 	}
+}
+
+//func (p *point) at(grid [][]int) (val int, ok bool) {
+//	if p.i >= len(grid) {
+//		return 0, false
+//	}
+//	if p.j >= len(grid[p.i]){
+//		return 0, false
+//	}
+//	grid[p.i][p.j]
+//}
+
+var dirs = []point{
+	{-1, 0}, {0, -1}, {1, 0}, {0, 1},
 }
 
 func readMaze(filename string) [][]int {
@@ -69,9 +87,15 @@ func bfs(maze [][]int, start point, end point) {
 
 	var queue = new(Queue)
 	for queue.length > 0 {
-		val := queue.poll().(point)
-		steps[val.i][val.j] = 1
+		cur := queue.poll().(point)
+		steps[cur.i][cur.j] = 1
 
+		//for _, dir := range dirs {
+		//	next := cur.add(dir)
+
+		//maze next is 0
+		//maze[next.i][next.j]
+		//}
 	}
 
 }

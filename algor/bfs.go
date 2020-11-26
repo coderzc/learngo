@@ -12,7 +12,7 @@ type point struct {
 	i, j int
 }
 
-func (p point) add(r point) point {
+func (p point) move(r point) point {
 	return point{p.i + r.i, p.j + r.j}
 }
 
@@ -36,21 +36,21 @@ func (q *Queue) poll() interface{} {
 func printMaze(maze [][]int) {
 	for _, row := range maze {
 		for _, val := range row {
-			fmt.Printf("%d ", val)
+			fmt.Printf("%3d", val)
 		}
 		fmt.Println()
 	}
 }
 
-//func (p *point) at(grid [][]int) (val int, ok bool) {
-//	if p.i >= len(grid) {
-//		return 0, false
-//	}
-//	if p.j >= len(grid[p.i]){
-//		return 0, false
-//	}
-//	grid[p.i][p.j]
-//}
+func (p *point) at(grid [][]int) (val int, ok bool) {
+	if p.i < 0 || p.i >= len(grid) {
+		return 0, false
+	}
+	if p.j < 0 || p.j >= len(grid[p.i]) {
+		return 0, false
+	}
+	return grid[p.i][p.j], true
+}
 
 var dirs = []point{
 	{-1, 0}, {0, -1}, {1, 0}, {0, 1},
@@ -79,25 +79,77 @@ func readMaze(filename string) [][]int {
 	return maze
 }
 
-func bfs(maze [][]int, start point, end point) {
+func appendIndex(slice []point, value point, i int) []point {
+	slice = append(slice, point{})
+	copy(slice[i+1:], slice[i:])
+	slice[i] = value
+	return slice
+}
+
+func bfs(maze [][]int, start point, end point) [][]int {
 	steps := make([][]int, len(maze))
 	for i := range maze {
 		steps[i] = make([]int, len(maze[i]))
 	}
 
 	var queue = new(Queue)
+	queue.offer(start)
+	//steps[start.i][start.j] = 0
 	for queue.length > 0 {
 		cur := queue.poll().(point)
-		steps[cur.i][cur.j] = 1
 
-		//for _, dir := range dirs {
-		//	next := cur.add(dir)
+		// 到达终点
+		if cur == end {
+			break
+		}
 
-		//maze next is 0
-		//maze[next.i][next.j]
-		//}
+		for _, dir := range dirs {
+			next := cur.move(dir)
+
+			// 碰墙
+			val, ok := next.at(maze)
+			if !ok || val == 1 {
+				continue
+			}
+			// 已经走过了
+			val, ok = next.at(steps)
+			if !ok || val != 0 {
+				continue
+			}
+			// 回到原点
+			if next == start {
+				continue
+			}
+			curStep, _ := cur.at(steps)
+			steps[next.i][next.j] = curStep + 1
+
+			queue.offer(next)
+		}
 	}
 
+	return steps
+}
+
+func genPath(steps [][]int, start point, end point) []point {
+	if endVal, _ := end.at(steps); endVal == 0 {
+		return nil
+	}
+	var path []point
+	cur := end
+	for cur != start {
+		path = appendIndex(path, cur, 0)
+		curVal, _ := cur.at(steps)
+		for _, dir := range dirs {
+			next := cur.move(dir)
+			val, _ := next.at(steps)
+			if val == curVal-1 {
+				cur = next
+				break
+			}
+		}
+	}
+	path = appendIndex(path, start, 0)
+	return path
 }
 
 func main() {
@@ -108,7 +160,17 @@ func main() {
 		}
 	}()
 	maze := readMaze("./maze.txt")
-	printMaze(maze)
+	//printMaze(maze)
 
-	bfs(maze, point{0, 0}, point{len(maze) - 1, len(maze[0]) - 1})
+	start := point{0, 0}
+	end := point{len(maze) - 1, len(maze[0]) - 1}
+	steps := bfs(maze, start, end)
+
+	printMaze(steps)
+
+	// 走到终点需要多少步
+	step, _ := end.at(steps)
+	fmt.Printf("move step:%d\n", step)
+
+	fmt.Println("path: ", genPath(steps, start, end))
 }

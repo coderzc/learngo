@@ -172,5 +172,6 @@ func main() {
 	step, _ := end.at(steps)
 	fmt.Printf("move step:%d\n", step)
 
+	// 生成路径
 	fmt.Println("path: ", genPath(steps, start, end))
 }

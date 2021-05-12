@@ -1,10 +1,11 @@
-package main
+package base
 
 import (
 	"fmt"
+	"testing"
 )
 
-func main() {
+func TestSliceops(t *testing.T) {
 	fmt.Println("create slice")
 	var s []int //Zero value for slice is nil
 
@@ -33,7 +34,7 @@ func main() {
 
 	fmt.Println("delete slice")
 	s2 = append(s2[:3], s[4:]...) // 展开列表
-
+	fmt.Println(s2)
 }
 
 func printSlice(s []int) {

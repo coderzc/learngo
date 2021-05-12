@@ -1,6 +1,9 @@
-package main
+package base
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 func swap(a, b int) {
 	a, b = b, a
@@ -10,7 +13,7 @@ func swap2(a, b *int) {
 	*a, *b = *b, *a
 }
 
-func main() {
+func TestPointer(t *testing.T) {
 	var v int = 2
 	var pv *int = &v
 	*pv = 3

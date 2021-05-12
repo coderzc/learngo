@@ -1,4 +1,4 @@
-package main
+package algor
 
 import (
 	"testing"

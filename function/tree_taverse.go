@@ -1,11 +1,13 @@
-package main
+package function
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/coderzc/learngo/model/tree"
 )
 
-func main() {
+func TestTreeTraverse(t *testing.T) {
 	var root tree.Node
 	root = tree.Node{Value: 3}
 	root.Left = &tree.Node{}

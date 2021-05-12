@@ -1,10 +1,11 @@
-package main
+package base
 
 import (
 	"fmt"
 	"math"
 	"reflect"
 	"runtime"
+	"testing"
 )
 
 /*
@@ -69,7 +70,7 @@ func sum(numbers ...int) int {
 	return s
 }
 
-func main() {
+func TestFunc(t *testing.T) {
 
 	i, i2 := div(13, 3)
 	fmt.Printf("q:%d，r:%d\n", i, i2)

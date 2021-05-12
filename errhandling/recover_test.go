@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"testing"
 )
 
 func tryRecover() {
@@ -17,6 +18,6 @@ func tryRecover() {
 	panic(123)
 }
 
-func main() {
+func TestRe(t *testing.T) {
 	tryRecover()
 }

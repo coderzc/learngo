@@ -1,8 +1,9 @@
-package main
+package goroutine
 
 import (
 	"fmt"
 	"math/rand"
+	"testing"
 	"time"
 )
 
@@ -31,7 +32,7 @@ func createWorker2(id int) chan<- int {
 	return ch
 }
 
-func main() {
+func TestSelect(t *testing.T) {
 	over := time.After(10 * time.Second)
 	tick := time.Tick(time.Second)
 	var p1, p2 <-chan int = genChain(), genChain() //生产消息

@@ -1,10 +1,11 @@
-package main
+package base
 
 import (
 	"fmt"
+	"testing"
 )
 
-func main() {
+func TestMaps(t *testing.T) {
 	m := map[string]string{
 		"name":    "ccmouse",
 		"course":  "golang",

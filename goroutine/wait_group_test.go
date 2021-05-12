@@ -1,8 +1,9 @@
-package main
+package goroutine
 
 import (
 	"fmt"
 	"sync"
+	"testing"
 )
 
 func workerWait(x int, wg *sync.WaitGroup) {
@@ -12,7 +13,7 @@ func workerWait(x int, wg *sync.WaitGroup) {
 	}
 }
 
-func main() {
+func TestWaitGroup(t *testing.T) {
 	//done := make(chan bool)
 	//go func() {
 	//	for i := 0; i < 5; i++ {

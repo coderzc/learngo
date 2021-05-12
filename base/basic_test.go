@@ -1,4 +1,4 @@
-package main
+package base
 
 /*
 go 变量
@@ -7,6 +7,7 @@ go 变量
 import (
 	"fmt"
 	"math"
+	"testing"
 )
 
 // 定义变量(会自动初始化有默认值)
@@ -90,7 +91,7 @@ func enums() {
 	fmt.Println(b, kb, mb, gb, tb, pb)
 }
 
-func main() {
+func TestBasic(t *testing.T) {
 	fmt.Println("Hello world")
 	variableZeroValue()
 	variableInitiaValue()

@@ -1,8 +1,9 @@
-package main
+package goroutine
 
 import (
 	"fmt"
 	"runtime"
+	"testing"
 )
 
 func channelDemo() {
@@ -79,7 +80,7 @@ func deadlock() {
 	//fmt.Println(<- ch)
 }
 
-func main() {
+func TestChannel(t *testing.T) {
 	channelDemo()
 
 	//bufferedChannel()

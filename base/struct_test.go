@@ -1,12 +1,14 @@
-package main
+package base
 
 import (
 	"encoding/json"
 	"fmt"
+	"testing"
+
 	"github.com/coderzc/learngo/model/tree"
 )
 
-func main() {
+func TestStruct(t *testing.T) {
 	var root tree.Node
 	root = tree.Node{Value: 3}
 	root.Left = &tree.Node{}

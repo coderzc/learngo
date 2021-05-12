@@ -1,6 +1,9 @@
-package main
+package function
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 // 闭包
 func adder() func(int) int {
@@ -19,7 +22,7 @@ func adder2(base int) iAdder {
 	}
 }
 
-func main() {
+func TestAdder(t *testing.T) {
 	a := adder()
 	for i := 0; i < 10; i++ {
 		fmt.Printf("0 + .... +%d= %d\n", i, a(i))

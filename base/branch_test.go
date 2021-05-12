@@ -1,4 +1,4 @@
-package main
+package base
 
 import (
 	"bufio"
@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strconv"
+	"testing"
 )
 
 /*
@@ -15,7 +16,7 @@ import (
 
 const filename = "abc.txt"
 
-func main() {
+func TestBranch(t *testing.T) {
 
 	testIf()
 

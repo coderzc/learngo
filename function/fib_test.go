@@ -1,10 +1,11 @@
-package main
+package function
 
 import (
 	"bufio"
 	"fmt"
 	"io"
 	"strings"
+	"testing"
 )
 
 type intGen func() int
@@ -33,6 +34,6 @@ func printStreamContents(reader io.Reader) {
 	}
 }
 
-func main() {
+func TestFib(t *testing.T) {
 	printStreamContents(fibonacci())
 }

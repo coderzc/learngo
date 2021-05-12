@@ -1,12 +1,13 @@
-package main
+package goroutine
 
 import (
 	"fmt"
 	"runtime"
 	"sync"
+	"testing"
 )
 
-func main() {
+func TestGoroutine(t *testing.T) {
 	a := 0
 	var mutex = new(sync.Mutex)
 	for i := 0; i < 10; i++ {

@@ -1,6 +1,9 @@
-package main
+package base
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 func printArray(arr [5]int) {
 	arr[0] = 100
@@ -18,7 +21,7 @@ func printArrayPointer(arr *[5]int) {
 	}
 }
 
-func main() {
+func TestArray(t *testing.T) {
 	var arr1 [5]int
 	arr2 := [3]int{1, 3, 5}
 	arr3 := [...]int{2, 4, 6, 8, 10}

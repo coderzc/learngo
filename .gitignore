@@ -53,3 +53,7 @@ gen
 # vendor/
 
 /protos_pb/
+
+.history/
+
+.vscode/

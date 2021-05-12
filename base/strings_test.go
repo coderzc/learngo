@@ -1,12 +1,13 @@
-package main
+package base
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
+	"testing"
 )
 
-func main() {
+func TestStrings(t *testing.T) {
 	s1 := " aBc"
 	s2 := "100a"
 	s3 := s1 + s2

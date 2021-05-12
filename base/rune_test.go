@@ -1,11 +1,12 @@
-package main
+package base
 
 import (
 	"fmt"
+	"testing"
 	"unicode/utf8"
 )
 
-func main() {
+func TestRune(t *testing.T) {
 	s := "YES 我爱你中国"
 	fmt.Println("lens is :", len(s))
 

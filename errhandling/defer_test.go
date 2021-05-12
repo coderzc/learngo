@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"testing"
 )
 
 func fibonacci() func() int {
@@ -48,7 +49,7 @@ func writeFile(filename string) {
 	}
 }
 
-func main() {
+func TestDefer(t *testing.T) {
 	//tryDefer()
 	writeFile("./fib.txt")
 }

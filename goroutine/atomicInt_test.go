@@ -1,9 +1,10 @@
-package main
+package goroutine
 
 import (
 	"fmt"
 	"runtime"
 	"sync"
+	"testing"
 )
 
 type atomicInt struct {
@@ -25,7 +26,7 @@ func (a *atomicInt) get() int {
 	return a.value
 }
 
-func main() {
+func TestAtomicInt(* testing.T) {
 	var a atomicInt
 	a.increment()
 	go func() {
